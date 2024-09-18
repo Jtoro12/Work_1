@@ -3,6 +3,6 @@ public class Main {
         System.out.println("test 1");
         ArraysList nuevoArray=new ArraysList();
         HashingEncadenado hash=new HashingEncadenado();
-        LinkedList linked=new LinkedList();
+        DobleLinkedList linked=new DobleLinkedList();
     }
 }
