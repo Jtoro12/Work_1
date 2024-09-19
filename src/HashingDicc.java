@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-
-
 public class HashingDicc{
     private int size;
     private ArrayList<Elemento>[] table;
@@ -14,36 +12,37 @@ public class HashingDicc{
         return key % size;
     }
 
-    public void insert(int key, String data) {
-        int index = hash(key);
+    public boolean insert(int Datakey) {
+        int index = hash(Datakey);
         int indexStart = index;
-        Elemento elem = new Elemento(key, data);
+        Elemento elem = new Elemento(Datakey, Datakey);
         for (int i = 0; i < size; i++) {
             if (table[index] == null) {
                 table[index] = new ArrayList<Elemento>();
+                return true;
             }
             if (table[index].isEmpty()) {
                 table[index].add(elem);
-                break;
+                return true;
             } else {
                 index = hash(index + 1);
                 if (index == indexStart) {
-                    System.out.println("tabla llena");
-                    break;
+                    return false;
                 }
 
             }
         }
+        return false;
 
     }
 
-    public boolean buscar(String data) {
+    public boolean buscar(int data) {
         for (int i = 0; i < size; i++) {
             if (table[i] == null) {
                 return false;
             } else {
                 for (Elemento elemnt : table[i]) {
-                    if (elemnt.getData().equals(data)) {
+                    if (elemnt.getData()==(data)) {
                         return true;
                     }
                 }
@@ -65,7 +64,7 @@ public class HashingDicc{
         return false;
     }
 
-    public String get(int key){
+    public int get(int key){
         int index = hash(key);
         if (table[index] != null) {
             for (Elemento elem : table[index]) {
@@ -74,7 +73,7 @@ public class HashingDicc{
                 }
             }
         }
-        return null;
+        return -1;
     }
 
     public void imprimir() {
@@ -93,10 +92,10 @@ public class HashingDicc{
 
     public class Elemento {
         int key;
-        String data;
+        int data;
         Elemento next;
 
-        public Elemento(int key, String data) {
+        public Elemento(int key, int data) {
             this.key = key;
             this.data = data;
             this.next = null;
@@ -106,7 +105,7 @@ public class HashingDicc{
             return key;
         }
 
-        public String getData() {
+        public int getData() {
             return data;
         }
     }

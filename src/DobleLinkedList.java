@@ -4,12 +4,12 @@ public class DobleLinkedList {
     // lista doblemente enlazada
 
     private static class Node {
-        String key;
-        String data;
+        int key;
+        int data;
         Node next;
         Node prev;
 
-        Node(String key, String data) {
+        Node(int key, int data) {
             this.key = key;
             this.data = data;
             this.data = data;
@@ -18,7 +18,7 @@ public class DobleLinkedList {
         }
     }
 
-    public void insertar(String key, String data) {
+    public void insertar(int key, int data) {
         Node newNode = new Node(key, data);
         if (head == null) {
             head = newNode;
@@ -30,10 +30,36 @@ public class DobleLinkedList {
         }
     }
 
-    public boolean buscar(String x) {
+    public void moverFinal(Node nod) {
+        if (nod == tail) {
+            return;
+        }
+        if (nod.prev != null) {
+            nod.prev.next = nod.next;
+        }
+        if (nod.next != null) {
+            nod.next.prev = nod.prev;
+        }
+        insertar(nod.key, nod.data);
+    }
+
+    public Node eliminarPrimero() {
+        Node aux = head;
+        if (aux != null) {
+            head = aux.next;
+            if (head != null) {
+                head.prev = null;
+                aux.next = null;
+            }
+        }
+        return aux;
+
+    }
+
+    public boolean buscar(int x) {
         Node auNode = head;
         do {
-            if (auNode.data.equals(x)) {
+            if (auNode.data == (x)) {
                 return true;
             }
             auNode = auNode.next;
@@ -66,32 +92,6 @@ public class DobleLinkedList {
             aux = aux.next;
         }
         System.out.println("");
-    }
-
-    public void moverFinal(Node nod) {
-        if (nod == tail) {
-            return;
-        }
-        if (nod.prev != null) {
-            nod.prev.next = nod.next;
-        }
-        if (nod.next != null) {
-            nod.next.prev = nod.prev;
-        }
-        insertar(nod.key, nod.data);
-    }
-
-    public Node eliminarPrimero() {
-        Node aux = head;
-        if (aux != null) {
-            head = aux.next;
-            if (head != null) {
-                head.prev = null;
-                aux.next = null;
-            }
-        }
-        return aux;
-
     }
 
     public boolean isEmpty() {
