@@ -40,15 +40,13 @@ public class HashingDicc{
         }
     }
 
-    public boolean buscar(int data) {
-        for (int i = 0; i < size; i++) {
-            if (table[i] == null) {
-                return false;
-            } else {
-                for (Elemento elemnt : table[i]) {
-                    if (elemnt.getData()==(data)) {
-                        return true;
-                    }
+
+    public boolean buscador(int data) {
+        int index = hash(data);
+        if (table[index] != null) {
+            for (Elemento elem : table[index]) {
+                if (elem.getData() == data) {
+                    return true;
                 }
             }
         }
@@ -68,17 +66,7 @@ public class HashingDicc{
         return false;
     }
 
-    public boolean contiene(int data) {
-        int index = hash(data);
-        if (table[index] != null) {
-            for (Elemento elem : table[index]) {
-                if (elem.getData() == data) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+
 
     public void imprimir() {
         for (int i = 0; i < size; i++) {

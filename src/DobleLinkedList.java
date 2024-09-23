@@ -58,17 +58,7 @@ public class DobleLinkedList {
 
     }
 
-    public boolean buscarLista(int x) {
-        Node auNode = head;
-        do {
-            if (auNode.data == (x)) {
-                return true;
-            }
-            auNode = auNode.next;
 
-        } while (auNode != head);
-        return false;
-    }
 
     public Node buscarNodo(int x) {
         if (head == null) {
