@@ -3,23 +3,16 @@ import java.util.LinkedList;
 public class HashingEncadenado {
 
     private int size;
-    private LinkedList<Elements>[] table;
+    private LinkedList<Node>[] table;
 
     public HashingEncadenado(int size) {
         this.size=size;
         table = new LinkedList[size];
         for (int i = 0; i < size; i++) {
-            table[i] = new LinkedList<Elements>();
+            table[i] = new LinkedList<Node>();
         }
     }
 
-    /*
-     * mod de la funcion hash para que acepte String en key
-     * private int hash(String key) {
-     * return Math.abs(key.hashCode()) % size;
-     * 
-     * }/*
-     */
 
     private int hash(int key) {
         return key % size;
@@ -30,15 +23,15 @@ public class HashingEncadenado {
         if (containsKey(keyData)) {
             return false; // clave ya existe, no se inserta
         }
-        Elements elem = new Elements((index), keyData);
+        Node elem = new Node((index), keyData);
         table[index].add(elem);
         return true; // clave insertada con éxito
     }
     
     private boolean containsKey(int keyData) {
         int index = hash(keyData);
-        for (Elements elem : table[index]) {
-            if (elem.getKey() == keyData) {
+        for (Node node : table[index]) {
+            if (node.getKey() == keyData) {
                 return true; // clave encontrada
             }
         }
@@ -50,8 +43,8 @@ public class HashingEncadenado {
         if (table[index].isEmpty()) {
             return false;
         }
-        for (Elements element : table[index]) {
-            if (element.data==(keyData)) {
+        for (Node node : table[index]) {
+            if (node.data==(keyData)) {
                 return true;
             }
         }
@@ -63,9 +56,9 @@ public class HashingEncadenado {
         if (table[index].isEmpty()) {
             return false;
         }
-        for (Elements element : table[index]) {
-            if (element.data==(keyData)) {
-                table[index].remove(element);
+        for (Node node : table[index]) {
+            if (node.data==(keyData)) {
+                table[index].remove(node);
                 return true;
             }
         }
@@ -88,32 +81,33 @@ public class HashingEncadenado {
                 System.out.println("bloque " + i + " null");
             } else {
                 System.out.print("bloque " + i + ": ");
-                for (Elements element : table[i]) {
-                    System.out.print(element.data);
+                for (Node node : table[i]) {
+                    System.out.print(node.data);
                     System.out.print(" ");
                 }
                 System.out.println();
             }
         }
     }
-    
-    //hashing debe aceptar clave, elemento <int,int>
-    public class Elements {
+
+    class Node {
         int key;
         int data;
+        Node prev;
+        Node next;
 
-        public Elements(int key, int data) {
+        public Node(int key, int data) {
             this.key = key;
             this.data = data;
         }
 
-        public int getKey() {
+        public int getKey(){
             return key;
         }
-
-        public int getData() {
-            return data;
+        public int getData(){
+            return  data;
         }
     }
+
 
 }
