@@ -1,28 +1,33 @@
+
 public class CacheLRU {
-    HashingDicc table=new HashingDicc(3);
-    DobleLinkedList lista=new DobleLinkedList();
+    DobleLinkedList listaLinked = new DobleLinkedList();
+    HashingDicc tablaHash = new HashingDicc(3);
 
-    public void insertar(int data) {
-        table.insert(data);
-        int indexTable=table.get(data);
-        lista.insertar(indexTable, data);
-
-        if(table.insert(data)){
-            System.out.println("Se inserto data");
-        }else{
-            System.out.println("tabla llena ");
-           
+    public void insercion(int data) {
+        if (!tablaHash.contiene(data)) {// verifica si existe el elemento dentro de la tabla
+            tablaHash.insertar(data);
+            int indTabla = tablaHash.hash(data);
+            listaLinked.insertar(indTabla, data);// inserta en la linkedlist <key,data> al principio
         }
-        System.out.println("lista");
-        lista.imprimir();
+        /*if (tablaHash.contiene(data)) {
+            listaLinked.moverFinal(listaLinked.buscarNodo(data));// si el elemento se repite envia el nodo de la lista al final
+        }*/
+    }
 
+    public void imprimir() {
+        System.out.println("lista");
+        listaLinked.imprimir();
+        System.out.println("tabla");
+        tablaHash.imprimir();
     }
 
     public static void main(String[] args) {
-        int[]a={1,2,3,4};
-        CacheLRU cache=new CacheLRU();
+        int[] a = { 1, 2, 3 };
+        CacheLRU cache = new CacheLRU();
         for (int i = 0; i < a.length; i++) {
-            cache.insertar(i);
+            cache.insercion(a[i]);
         }
+        cache.imprimir();
+
     }
 }

@@ -8,32 +8,36 @@ public class HashingDicc{
         table = new ArrayList[size];
     }
 
-    private int hash(int key) {
+    public int hash(int key) {
         return key % size;
     }
 
-    public boolean insert(int Datakey) {
+    public boolean insertar(int Datakey) {
         int index = hash(Datakey);
         int indexStart = index;
-        Elemento elem = new Elemento(Datakey, Datakey);
-        for (int i = 0; i < size; i++) {
+        Elemento elem = new Elemento(index, Datakey);
+    
+        while (true) {
+            if (index >= size) {
+                index = 0; // wrap around to beginning of table
+            }
+    
             if (table[index] == null) {
                 table[index] = new ArrayList<Elemento>();
+                table[index].add(elem);
                 return true;
             }
+    
             if (table[index].isEmpty()) {
                 table[index].add(elem);
                 return true;
-            } else {
-                index = hash(index + 1);
-                if (index == indexStart) {
-                    return false;
-                }
-
+            }
+    
+            index = (index + 1) % size; 
+            if (index == indexStart) {
+                return false; // table is full
             }
         }
-        return false;
-
     }
 
     public boolean buscar(int data) {
@@ -64,16 +68,16 @@ public class HashingDicc{
         return false;
     }
 
-    public int get(int key){
-        int index = hash(key);
+    public boolean contiene(int data) {
+        int index = hash(data);
         if (table[index] != null) {
             for (Elemento elem : table[index]) {
-                if (elem.getKey() == key) {
-                    return elem.getData();
+                if (elem.getData() == data) {
+                    return true;
                 }
             }
         }
-        return -1;
+        return false;
     }
 
     public void imprimir() {
@@ -109,5 +113,6 @@ public class HashingDicc{
             return data;
         }
     }
+    
 
 }

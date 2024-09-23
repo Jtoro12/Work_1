@@ -2,10 +2,11 @@ import java.util.LinkedList;
 
 public class HashingEncadenado {
 
-    private static final int size = 10;
+    private int size;
     private LinkedList<Elements>[] table;
 
-    public HashingEncadenado() {
+    public HashingEncadenado(int size) {
+        this.size=size;
         table = new LinkedList[size];
         for (int i = 0; i < size; i++) {
             table[i] = new LinkedList<Elements>();
@@ -24,10 +25,24 @@ public class HashingEncadenado {
         return key % size;
     }
 
-    public void insertar(int keyData) {
+    public boolean insert(int keyData) {
         int index = hash(keyData);
+        if (containsKey(keyData)) {
+            return false; // clave ya existe, no se inserta
+        }
         Elements elem = new Elements((index), keyData);
-        table[index].add(elem);// insertar con Elements <key, data>
+        table[index].add(elem);
+        return true; // clave insertada con éxito
+    }
+    
+    private boolean containsKey(int keyData) {
+        int index = hash(keyData);
+        for (Elements elem : table[index]) {
+            if (elem.getKey() == keyData) {
+                return true; // clave encontrada
+            }
+        }
+        return false; // clave no encontrada
     }
 
     public boolean buscar(int keyData) {
@@ -55,6 +70,15 @@ public class HashingEncadenado {
             }
         }
         return false;
+    }
+
+    public boolean isFull() {
+        for (int i = 0; i < size; i++) {
+            if (table[i].isEmpty()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     

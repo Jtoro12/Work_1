@@ -3,7 +3,7 @@ public class DobleLinkedList {
     private Node tail;
     // lista doblemente enlazada
 
-    private static class Node {
+    public static class Node {
         int key;
         int data;
         Node next;
@@ -11,7 +11,6 @@ public class DobleLinkedList {
 
         Node(int key, int data) {
             this.key = key;
-            this.data = data;
             this.data = data;
             this.next = null;
             this.prev = null;
@@ -24,9 +23,9 @@ public class DobleLinkedList {
             head = newNode;
             tail = newNode;
         } else {
-            tail.next = newNode;
-            newNode.prev = tail;
-            tail = newNode;
+            newNode.next = head;
+            newNode.prev = head;
+            head = newNode;
         }
     }
 
@@ -40,7 +39,10 @@ public class DobleLinkedList {
         if (nod.next != null) {
             nod.next.prev = nod.prev;
         }
-        insertar(nod.key, nod.data);
+        nod.prev=tail;
+        nod.next=null;
+        tail.next=nod;
+        tail=nod;
     }
 
     public Node eliminarPrimero() {
@@ -56,7 +58,7 @@ public class DobleLinkedList {
 
     }
 
-    public boolean buscar(int x) {
+    public boolean buscarLista(int x) {
         Node auNode = head;
         do {
             if (auNode.data == (x)) {
@@ -66,6 +68,23 @@ public class DobleLinkedList {
 
         } while (auNode != head);
         return false;
+    }
+
+    public Node buscarNodo(int x) {
+        if (head == null) {
+            return null; // lista vacía
+        }
+        Node auNode = head;
+        do {
+            if (auNode == null) {
+                break; // salir del bucle si auNode es null
+            }
+            if (auNode.data == x) {
+                return auNode;
+            }
+            auNode = auNode.next;
+        } while (auNode != head);
+        return null; // no se encontró el nodo
     }
 
     public void eliminar(Node aux) {
@@ -88,7 +107,7 @@ public class DobleLinkedList {
         }
         Node aux = head;
         while (aux != null) {
-            System.out.print(aux.data + " ");
+            System.out.print("<K:"+aux.key+", D:"+aux.data + ">");
             aux = aux.next;
         }
         System.out.println("");
