@@ -32,6 +32,9 @@ public class HashingDiccionario {
                 index = hash(index + 1);
                 if (index == indexStart) {
                     lista.deleteLast();// elimina el menos usado
+                    eliminar(fibronacci);
+                    lista.add(fibronacci);//insetar el nuevo elemento
+                    table[index].add(elem);//se actuliza el dato
                     return false;
                 }
 
@@ -106,13 +109,15 @@ public class HashingDiccionario {
         tabla.insertar(30);
         tabla.imprimirTabla();
         tabla.imprimirLista();
-        tabla.buscar(10);
-        System.out.println("despues de buscar");
-        tabla.imprimirLista();
-        System.out.println("eliminar 20");
-        tabla.eliminar(20);
+        System.out.println("ingresar un elemento de mas");
+        tabla.insertar(40);
         tabla.imprimirLista();
         tabla.imprimirTabla();
+        System.out.println("insertando uno nuevo");
+        tabla.insertar(50);
+        tabla.imprimirLista();
+        tabla.imprimirTabla();
+
     }
 
 }
