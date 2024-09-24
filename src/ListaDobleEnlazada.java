@@ -51,7 +51,7 @@ public class ListaDobleEnlazada {
         StringBuilder sb = new StringBuilder();
         Nodo current = Cabeza;
         while (current!=null){
-            sb.append(current.data).append(" ");
+            sb.append(current.data).append("-");
             current=current.next;
         }
         return sb.toString();
