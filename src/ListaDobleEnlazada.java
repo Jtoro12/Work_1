@@ -7,13 +7,13 @@ public class ListaDobleEnlazada {
         Cola = null;
     }
 
-    public void add(int data) {
+    public void add(int data, int index) {
         if (this.Cabeza == null && this.Cola == null) {
-            this.Cabeza = new Nodo(data);
+            this.Cabeza = new Nodo(data, index);
             this.Cola = this.Cabeza;
         } else {
             Nodo current = this.Cabeza;
-            Cabeza = new Nodo(data);
+            Cabeza = new Nodo(data, index);
             Cabeza.next = current;
             current.prev = Cabeza;
         }
@@ -47,19 +47,21 @@ public class ListaDobleEnlazada {
         }
     }
 
-    public Nodo getNodo(int data) {
+    public Nodo getNodo(int index) {
         Nodo current = Cabeza;
-        while (current.data != data) {
+        while (current.data != index) {
             current = current.next;
         }
         return current;
     }
 
+    
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         Nodo current = Cabeza;
         while (current != null) {
-            sb.append(current.data).append("-");
+            sb.append(current.index).append("-");
             current = current.next;
         }
         return sb.toString();
@@ -69,11 +71,17 @@ public class ListaDobleEnlazada {
         Nodo next;
         Nodo prev;
         int data;
+        int index;
 
-        Nodo(int data) {
+        Nodo(int data,int index) {
             this.data = data;
+            this.index=index;
             next = null;
             prev = null;
+        }
+
+        public int getData(){
+            return data;
         }
     }
 }
