@@ -47,6 +47,16 @@ public class ListaDobleEnlazada {
         }
     }
 
+    public int getData(){
+        Nodo current = Cabeza;
+        while (current.next!= null) {
+            current = current.next;
+        }
+        return current.data;
+    }
+
+    
+
     public Nodo getNodo(int index) {
         Nodo current = Cabeza;
         while (current.data != index) {

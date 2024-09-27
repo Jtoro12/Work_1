@@ -2,10 +2,18 @@ public class CacheLRU {
     
     
     public static void main(String[] args) {
-        HashingDiccionario tabla= new HashingDiccionario(3);
+        HashingDiccionario tabla= new HashingDiccionario(2);
         System.out.println("");
-        int x=tabla.valor(2);
-        System.out.println("valor fibronacci de _ es: "+x);
+        tabla.insertar(1, 0);
+        tabla.insertar(3, 0);
+        tabla.imprimirTabla();
+        tabla.imprimirLista();
+        System.out.println("nueva tabla");
+        tabla.insertar(4, 0);
+        tabla.imprimirTabla();
+        tabla.imprimirLista();
+        //int x=tabla.valor(4);
+        //System.out.println("valor fibronacci de _ es: "+x);
 
         
 
