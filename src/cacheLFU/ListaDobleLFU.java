@@ -1,8 +1,8 @@
 package cacheLFU;
 
 public class ListaDobleLFU {
-    private NodoLista Cabeza;
-    private NodoLista Cola;
+    public NodoLista Cabeza;
+    public NodoLista Cola;
     public int size;
 
     public ListaDobleLFU(){

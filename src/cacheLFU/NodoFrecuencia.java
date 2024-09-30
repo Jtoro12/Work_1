@@ -1,9 +1,9 @@
 package cacheLFU;
 
 public class NodoFrecuencia {
-    ListaDobleLFU lista;
-    NodoFrecuencia next;
-    NodoFrecuencia prev;
+    public ListaDobleLFU lista;
+    public NodoFrecuencia next;
+    public NodoFrecuencia prev;
     int frecuencia;
 
     public NodoFrecuencia(int frecuencia){
