@@ -1,4 +1,4 @@
-package cacheLFU;
+package cacheLFU_;
 
 public class NodoFrecuencia {
     public ListaDobleLFU lista;

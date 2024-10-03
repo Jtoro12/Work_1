@@ -1,4 +1,4 @@
-package cacheLFU;
+package cacheLFU_;
 
 import javax.swing.text.Element;
 

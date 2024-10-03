@@ -1,4 +1,4 @@
-package cacheLFU;
+package cacheLFU_;
 
 public class ListaDobleLFU {
     public NodoLista Cabeza;
