@@ -1,3 +1,4 @@
+package cacheLRU_;
 public class Main {
     public static void main(String[] args) {
         int cacheSize = 5;

@@ -1,3 +1,4 @@
+package cacheLRU_;
 import java.util.HashMap;
 
 class LRUCache {
