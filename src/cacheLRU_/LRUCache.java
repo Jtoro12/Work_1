@@ -21,7 +21,7 @@ class LRUCache {
     }
 
     private final int capacity;
-    private final HashMap<Integer,Node> cache ;
+    private final HashMap<Integer,Node> cache ; //esto se debe cambiar al hashing que crees 
     private final Node head, tail;
 
     public LRUCache(int capacity) {

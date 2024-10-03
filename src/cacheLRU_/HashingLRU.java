@@ -1,10 +1,10 @@
-package cacheLFU_;
+package cacheLRU_;
 
-public class HashingLFU {
+public class HashingLRU {
     private NodoHashing[]T;
     private int size;
 
-    public HashingLFU(int tamanio){
+    public HashingLRU(int tamanio){
         T = new NodoHashing[tamanio];
         this.size=0;
     }
@@ -29,6 +29,18 @@ public class HashingLFU {
             }
             i++;
         }
+    }
+
+    public boolean containsKey(int clave){
+        int index=h(clave);
+        if(T[index]!=null){
+            for (NodoHashing nodoHashing : T) {
+                if(nodoHashing.nodo.clave==clave){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public boolean eliminar(int clave){
@@ -65,4 +77,5 @@ public class HashingLFU {
     public int size(){
         return size;
     }
+    
 }

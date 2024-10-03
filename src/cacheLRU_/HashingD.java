@@ -3,7 +3,9 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
 
-//haceer uno similar 
+//haceer uno similar, desde mi 
+//debe recibir el tamaño como parametro 
+
 
 public class HashingD<K, V> {
     // Tamaño por defecto de la tabla hash
@@ -80,8 +82,8 @@ public class HashingD<K, V> {
         }
         return false;  // No se encontró la clave
     }
-
-    public boolean containsKey(K key) {
+    //metodo get(key) return index
+    public boolean containsKey(K key) {// este metodo
         int index = hash(key);
 
         if (table[index] != null) {
