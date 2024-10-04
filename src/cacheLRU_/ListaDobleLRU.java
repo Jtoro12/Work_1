@@ -64,4 +64,12 @@ public class ListaDobleLRU {
         }
         size--;
     }
+
+    public void print() {
+        NodoLista nodoCurrent = this.Cabeza;
+        while (nodoCurrent != null) {
+            System.out.print("(" + nodoCurrent.clave + ";" + nodoCurrent.resultado + ")");
+            nodoCurrent = nodoCurrent.next;
+        }
+    }
 }

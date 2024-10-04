@@ -4,12 +4,14 @@ public class Main {
         int cacheSize = 5;
         LRUCache lruCache = new LRUCache(cacheSize);
         FibonacciLRU fibonacciLRU=new FibonacciLRU();
-
-        System.out.println(fibonacciLRU.fibonacciLRU(10,lruCache));  // Resultado de Fibonacci para N=10 con LRU
-        System.out.println(fibonacciLRU.fibonacciLRU(11, lruCache));  // Resultado de Fibonacci para N=10 con LRU
+        System.out.println("valor de 10");
+        System.out.println(fibonacciLRU.fibonacciLRU(10,lruCache));  // Resultado de Fibonacci para N=10 con LRU y cache 5 
+        System.out.println("valor de 11");
+        System.out.println(fibonacciLRU.fibonacciLRU(11, lruCache));  // Resultado de Fibonacci para N=10 con LRU y cache 5
         lruCache.print();
         System.out.println("valor de 12");
         System.out.println(fibonacciLRU.fibonacciLRU(12, lruCache));
+        System.out.println("Estados de los cache");
         lruCache.print();
     }
 }

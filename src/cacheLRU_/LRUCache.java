@@ -1,14 +1,15 @@
 package cacheLRU_;
 
-public class LRUcash {
+public class LRUCache {
     int capacidad;
     HashingLRU cache;
     ListaDobleLRU lista;
     int size;
 
-    public LRUcash(int capacidad) {
+    public LRUCache(int capacidad) {
         this.capacidad = capacidad;
         this.cache = new HashingLRU(capacidad);
+        this.lista=new ListaDobleLRU();
         this.size = 0;
     }
 
@@ -30,7 +31,7 @@ public class LRUcash {
         NodoLista nodoLista = new NodoLista(key, data);
         lista.insertar(nodoLista);
         NodoHashing nodoCache = new NodoHashing(nodoLista, key);
-        cache.insertar(nodoCache);//cambia algo del nodo existente
+        cache.insertar(nodoCache);// cambia algo del nodo existente
 
         if (cache.size() > capacidad) {
             int clave = lista.getLast();
@@ -40,4 +41,15 @@ public class LRUcash {
             cache.eliminar(clave);
         }
     }
+
+
+
+    public void print(){
+        System.out.println("Estado Cache");
+        cache.print();
+        System.out.println("Estado Lista");
+        lista.print();
+        System.out.println("");
+    }
+
 }

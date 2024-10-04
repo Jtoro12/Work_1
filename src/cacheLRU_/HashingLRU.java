@@ -6,6 +6,10 @@ public class HashingLRU {
 
     public HashingLRU(int tamanio) {
         T = new NodoHashing[tamanio];
+        NodoLista node = new NodoLista(0, 0);
+        for (int i = 0; i < T.length; i++) {
+            T[i] = new NodoHashing(node, 0);
+        }
         this.size = 0;
     }
 
@@ -46,7 +50,7 @@ public class HashingLRU {
         return false;
     }
 
-    public NodoLista buscarNodo (int clave){
+    public NodoLista buscarNodo(int clave) {
         int h = h(clave);
         int i = 0;
         int index;
@@ -99,6 +103,14 @@ public class HashingLRU {
 
     public int size() {
         return size;
+    }
+
+    public void print() {
+        for (int i = 0; i < T.length; i++) {
+            if (T[i] != null) {
+                System.out.println("Clave: " + T[i].clave + ", Valor: " + T[i].nodo.resultado);
+            }
+        }
     }
 
 }

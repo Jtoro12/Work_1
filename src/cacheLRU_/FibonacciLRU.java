@@ -1,4 +1,5 @@
 package cacheLRU_;
+
 public class FibonacciLRU {
     public int fibonacciLRU(int n, LRUCache cache) {
         if (n <= 1) {
