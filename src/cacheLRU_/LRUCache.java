@@ -9,7 +9,7 @@ public class LRUCache {
     public LRUCache(int capacidad) {
         this.capacidad = capacidad;
         this.cache = new HashingLRU(capacidad);
-        this.lista=new ListaDobleLRU();
+        this.lista = new ListaDobleLRU();
         this.size = 0;
     }
 
@@ -18,38 +18,48 @@ public class LRUCache {
             return -1;
         }
         NodoLista nodoLista = cache.buscarNodo(key);
-        lista.eliminar(nodoLista);// mover el nodo al principio
-        lista.insertar(nodoLista);
+        lista.removeNode(nodoLista);// mover el nodo al principio
+        lista.addNode(nodoLista);
 
         return nodoLista.resultado;
     }
 
     public void put(int key, int data) {
         if (cache.containsKey(key)) { // cuando la clave existe,entra
-            lista.eliminar(cache.buscarNodo(key));// lo borra
+            NodoLista node = cache.buscarNodo(key);
+            lista.removeNode(node);// lo borra
+         } else {
+            NodoLista nodoLista = new NodoLista(key, data);
+            lista.addNode(nodoLista);
+            NodoHashing nodoCache = new NodoHashing(nodoLista, key);
+            cache.insertar(nodoCache);
         }
-        NodoLista nodoLista = new NodoLista(key, data);
-        lista.insertar(nodoLista);
-        NodoHashing nodoCache = new NodoHashing(nodoLista, key);
-        cache.insertar(nodoCache);// cambia algo del nodo existente
 
-        if (cache.size() > capacidad) {
-            int clave = lista.getLast();
+        if (lista.size() > capacidad) {
+            NodoLista last = lista.getLast();
             // eliminar el ultimo nodo lista
-            lista.eliminarCola();
+            lista.removeNode(last);
             // eliminar el nodo del cache
-            cache.eliminar(clave);
+            cache.eliminar(last.clave);
         }
     }
 
-
-
-    public void print(){
+    public void print() {
         System.out.println("Estado Cache");
         cache.print();
         System.out.println("Estado Lista");
         lista.print();
         System.out.println("");
+    }
+
+    public static void main(String[] args) {
+        LRUCache cache = new LRUCache(3);
+        cache.put(1, 1);
+        cache.put(2, 2);
+        cache.put(3, 3);
+        cache.put(4,4);
+        cache.print();
+
     }
 
 }

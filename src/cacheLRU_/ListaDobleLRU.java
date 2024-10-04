@@ -1,5 +1,6 @@
 package cacheLRU_;
 
+
 public class ListaDobleLRU {
     public NodoLista Cabeza;
     public NodoLista Cola;
@@ -11,58 +12,37 @@ public class ListaDobleLRU {
         this.size = 0;
     }
 
-    public void insertar(NodoLista nodo) {
-        if (Cabeza == null && Cola == null) {
-            Cabeza = nodo;
-            Cola = Cabeza;
+    public void addNode(NodoLista node) {
+        if (Cabeza == null) {
+            Cabeza = node;
+            Cola = node;
         } else {
-            NodoLista current = this.Cabeza;
-            Cabeza = nodo;
-            Cabeza.next = current;
-            current.prev = Cabeza;
-        }
-        size++;
-    }
-
-    public void eliminarCola() {
-        if (Cola != null) {
-            if (Cabeza == Cola) {
-                Cabeza = null;
-                Cola = null;
-            } else {
-                Cola = Cola.prev;
-                Cola.next = null;
-            }
-            size--;
+            node.next = Cabeza;
+            Cabeza.prev = node;
+            Cabeza = node;
         }
     }
 
-    public int getLast() {
+    public void removeNode(NodoLista node) {
+        NodoLista prev=node.prev;
+        NodoLista next=node.next;
+        prev.next=next;
+        next.prev=prev;
+    }
+
+    public NodoLista getLast() {
         NodoLista current = this.Cabeza;
         if (Cabeza == null && Cola == null) {
-            return -1;
+            return null;
         }
         while (current.next != null) {
             current = current.next;
         }
-        return current.clave;
+        return current;
     }
 
-    public void eliminar(NodoLista nodo) {
-        if (nodo == Cabeza && nodo == Cola) {
-            Cabeza = null;
-            Cola = null;
-        } else if (nodo == Cabeza) {
-            Cabeza = nodo.next;
-            Cabeza.prev = null;
-        } else if (nodo == Cola) {
-            Cola = Cola.prev;
-            Cola.next = null;
-        } else {
-            nodo.next.prev = nodo.prev;
-            nodo.prev.next = nodo.next;
-        }
-        size--;
+    public int size(){
+        return this.size;
     }
 
     public void print() {
@@ -72,4 +52,5 @@ public class ListaDobleLRU {
             nodoCurrent = nodoCurrent.next;
         }
     }
+
 }
