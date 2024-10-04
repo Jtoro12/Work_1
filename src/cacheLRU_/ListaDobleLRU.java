@@ -37,6 +37,17 @@ public class ListaDobleLRU {
         }
     }
 
+    public int getLast() {
+        NodoLista current = this.Cabeza;
+        if (Cabeza == null && Cola == null) {
+            return -1;
+        }
+        while (current.next != null) {
+            current = current.next;
+        }
+        return current.clave;
+    }
+
     public void eliminar(NodoLista nodo) {
         if (nodo == Cabeza && nodo == Cola) {
             Cabeza = null;

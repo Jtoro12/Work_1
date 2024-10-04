@@ -1,29 +1,32 @@
 package cacheLRU_;
 
 public class HashingLRU {
-    private NodoHashing[]T;
+    private NodoHashing[] T;
     private int size;
 
-    public HashingLRU(int tamanio){
+    public HashingLRU(int tamanio) {
         T = new NodoHashing[tamanio];
-        this.size=0;
-    }
-    private int h(int key){
-        return key % T.length;
-    }
-    private int hi(int hash, int i){
-        return (hash+i) % T.length;
+        this.size = 0;
     }
 
-    public void insertar(NodoHashing nodo){
-        if (size>= T.length) return; //tabla llena
+    private int h(int key) {
+        return key % T.length;
+    }
+
+    private int hi(int hash, int i) {
+        return (hash + i) % T.length;
+    }
+
+    public void insertar(NodoHashing nodo) {
+        if (size >= T.length)
+            return; // tabla llena
         int h = h(nodo.clave);
-        int i=0;
+        int i = 0;
         int index;
-        while (i<T.length){
-            index=hi(h,i);
-            if (T[index]==null){
-                T[index]=nodo;
+        while (i < T.length) {
+            index = hi(h, i);
+            if (T[index] == null) {
+                T[index] = nodo;
                 size++;
                 return;
             }
@@ -31,11 +34,11 @@ public class HashingLRU {
         }
     }
 
-    public boolean containsKey(int clave){
-        int index=h(clave);
-        if(T[index]!=null){
+    public boolean containsKey(int clave) {
+        int index = h(clave);
+        if (T[index] != null) {
             for (NodoHashing nodoHashing : T) {
-                if(nodoHashing.nodo.clave==clave){
+                if (nodoHashing.nodo.clave == clave) {
                     return true;
                 }
             }
@@ -43,14 +46,31 @@ public class HashingLRU {
         return false;
     }
 
-    public boolean eliminar(int clave){
+    public NodoLista buscarNodo (int clave){
         int h = h(clave);
-        int i=0;
+        int i = 0;
         int index;
-        while (i<T.length){
-            index=hi(h,i);
-            if (T[index]==null) return false;
-            if (T[index].clave==clave){
+        while (i < T.length) {
+            index = hi(h, i);
+            if (T[index] == null)
+                return null;
+            if (T[index].clave == clave) {
+                return T[index].nodo;
+            }
+            i++;
+        }
+        return null;
+    }
+
+    public boolean eliminar(int clave) {
+        int h = h(clave);
+        int i = 0;
+        int index;
+        while (i < T.length) {
+            index = hi(h, i);
+            if (T[index] == null)
+                return false;
+            if (T[index].clave == clave) {
                 NodoHashing current = T[index];
                 T[index] = null;
                 size--;
@@ -61,21 +81,24 @@ public class HashingLRU {
         return false;
     }
 
-    public NodoHashing buscar(int clave){
+    public NodoHashing buscar(int clave) {
         int h = h(clave);
         int i = 0;
         int index;
         while (i < T.length) {
-            index=hi(h,i);
-            if (T[index]==null) return null;
-            if (T[index].clave==clave) return T[index];
+            index = hi(h, i);
+            if (T[index] == null)
+                return null;
+            if (T[index].clave == clave) {
+                return T[index];
+            }
             i++;
         }
         return null;
     }
 
-    public int size(){
+    public int size() {
         return size;
     }
-    
+
 }
