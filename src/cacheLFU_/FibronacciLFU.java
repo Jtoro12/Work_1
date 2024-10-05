@@ -1,7 +1,7 @@
 package cacheLFU_;
 public class FibronacciLFU {
      public int fibonacciLRU(int n, CacheLFU cache) {
-
+        
         if (n <= 1) {
             return n;
         }
@@ -10,7 +10,7 @@ public class FibronacciLFU {
         }
         int result = fibonacciLRU(n - 1, cache) + fibonacciLRU(n - 2, cache);// caso geenran retorna el valor
         cache.insertar(n, result);
-
+        
         return result;
     }
 }
