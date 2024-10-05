@@ -64,7 +64,7 @@ public class ListaDobleLRU {
     public void print() {
         NodoLista nodoCurrent = this.Cabeza;
         while (nodoCurrent != null) {
-            System.out.print("(" + nodoCurrent.clave + ";" + nodoCurrent.resultado + ")");
+            System.out.print("(K:" + nodoCurrent.clave + "; V:" + nodoCurrent.resultado + ")");
             nodoCurrent = nodoCurrent.next;
         }
         System.out.println("");

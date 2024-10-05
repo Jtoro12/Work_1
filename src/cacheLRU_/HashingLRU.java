@@ -40,7 +40,7 @@ public class HashingLRU {
         int index = h(clave);
         if (T[index] != null) {
             for (NodoHashing nodoHashing : T) {
-                if (nodoHashing.nodo.clave == clave) {
+                if (nodoHashing!=null && nodoHashing.nodo.clave == clave) {
                     return true;
                 }
             }

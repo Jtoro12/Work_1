@@ -1,12 +1,15 @@
 package cacheLRU_;
 public class Main {
     public static void main(String[] args) {
-        int cacheSize = 5;
+        int cacheSize = 3;
         LRUCache lruCache = new LRUCache(cacheSize);
         FibonacciLRU fibonacciLRU=new FibonacciLRU();
-        System.out.println("valor de 2");
-        System.out.println(fibonacciLRU.fibonacciLRU(2,lruCache));  // Resultado de Fibonacci para N=10 con LRU y cache 5 
-        System.out.println("Estados de los cache");
+        System.out.println("valor de 7");
+        System.out.println(fibonacciLRU.fibonacciLRU(7,lruCache));
+        System.out.println("valor de 8");
+        System.out.println(fibonacciLRU.fibonacciLRU(8,lruCache));
+        
+        System.out.println("Cache");
         lruCache.print();
     }
 }
