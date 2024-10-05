@@ -25,23 +25,21 @@ public class LRUCache {
     }
 
     public void put(int key, int data) {
-        if (cache.containsKey(key)) { // cuando la clave existe,entra
+        if (cache.containsKey(key)) {
             NodoLista node = cache.buscarNodo(key);
-            lista.removeNode(node);// lo borra
-         } else {
-            NodoLista nodoLista = new NodoLista(key, data);
-            lista.addNode(nodoLista);
-            NodoHashing nodoCache = new NodoHashing(nodoLista, key);
-            cache.insertar(nodoCache);
+            lista.removeNode(node);
         }
 
-        if (lista.size() > capacidad) {
-            NodoLista last = lista.getLast();
-            // eliminar el ultimo nodo lista
-            lista.removeNode(last);
-            // eliminar el nodo del cache
-            cache.eliminar(last.clave);
+        if (lista.size() >= capacidad) {
+            NodoLista lastNode = lista.getLast();
+            lista.removeNode(lastNode);
+            cache.eliminar(lastNode.clave);
         }
+
+        NodoLista newNode = new NodoLista(key, data);
+        lista.addNode(newNode);
+        NodoHashing cacheNode = new NodoHashing(newNode, key);
+        cache.insertar(cacheNode);
     }
 
     public void print() {
@@ -50,16 +48,6 @@ public class LRUCache {
         System.out.println("Estado Lista");
         lista.print();
         System.out.println("");
-    }
-
-    public static void main(String[] args) {
-        LRUCache cache = new LRUCache(3);
-        cache.put(1, 1);
-        cache.put(2, 2);
-        cache.put(3, 3);
-        cache.put(4,4);
-        cache.print();
-
     }
 
 }

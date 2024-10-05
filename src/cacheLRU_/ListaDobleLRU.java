@@ -1,6 +1,5 @@
 package cacheLRU_;
 
-
 public class ListaDobleLRU {
     public NodoLista Cabeza;
     public NodoLista Cola;
@@ -23,11 +22,21 @@ public class ListaDobleLRU {
         }
     }
 
-    public void removeNode(NodoLista node) {
-        NodoLista prev=node.prev;
-        NodoLista next=node.next;
-        prev.next=next;
-        next.prev=prev;
+    public void removeNode(NodoLista nodo) {
+        if (nodo == Cabeza && nodo == Cola) {
+            Cabeza = null;
+            Cola = null;
+        } else if (nodo == Cabeza) {
+            Cabeza = nodo.next;
+            Cabeza.prev = null;
+        } else if (nodo == Cola) {
+            Cola = Cola.prev;
+            Cola.next = null;
+        } else {
+            nodo.next.prev = nodo.prev;
+            nodo.prev.next = nodo.next;
+        }
+        size--;
     }
 
     public NodoLista getLast() {
@@ -41,8 +50,15 @@ public class ListaDobleLRU {
         return current;
     }
 
-    public int size(){
-        return this.size;
+    public int size() {
+        int cont = 0;
+        NodoLista current = this.Cabeza;
+        while (current != null) {
+            cont++;
+            current = current.next;
+
+        }
+        return cont;
     }
 
     public void print() {
@@ -51,6 +67,7 @@ public class ListaDobleLRU {
             System.out.print("(" + nodoCurrent.clave + ";" + nodoCurrent.resultado + ")");
             nodoCurrent = nodoCurrent.next;
         }
+        System.out.println("");
     }
 
 }
