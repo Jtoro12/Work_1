@@ -4,12 +4,13 @@ public class Main {
         int cacheSize = 3;
         LRUCache lruCache = new LRUCache(cacheSize);
         FibonacciLRU fibonacciLRU=new FibonacciLRU();
-        System.out.println("valor de 7");
-        System.out.println(fibonacciLRU.fibonacciLRU(7,lruCache));
-        System.out.println("valor de 8");
-        System.out.println(fibonacciLRU.fibonacciLRU(8,lruCache));
+        int test=2;
+        int result=(fibonacciLRU.fibonacciLRU(test,lruCache));
+        System.out.println("Fibronacci resultado de:"+test+"="+result);
+       System.out.println("estados");
+       lruCache.print();
+    
         
-        System.out.println("Cache");
-        lruCache.print();
+        
     }
 }
