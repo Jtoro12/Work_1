@@ -2,11 +2,11 @@ package cacheLFU_;
 
 public class Main {
     public static void main(String[] args) {
-        int cacheSize=35;
+        int cacheSize=3;
         CacheLFU lfu=new CacheLFU(cacheSize);
         FibronacciLFU fibronacciLFU=new FibronacciLFU();
-        int test=46;
-        int resultado=(fibronacciLFU.fibonacciLRU(test, lfu));
+        int test=45;
+        int resultado=(fibronacciLFU.fibonacciLFU(test, lfu));
         System.out.println("Fibronacci[LFU] resultado de:"+test+"="+resultado);
        
     }
