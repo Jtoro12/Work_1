@@ -1,4 +1,7 @@
 package cacheLFU_;
+
+import java.math.BigInteger;
+
 /**
  * @author Javier Toro Toro
  * @author Sebastián Cádiz Quezada
@@ -9,9 +12,9 @@ public class NodoLista {
     NodoLista prev;
     NodoFrecuencia frecPadre;
     int clave;
-    int resultado;
+    BigInteger resultado;
 
-    public NodoLista(int clave, int resultado) {
+    public NodoLista(int clave, BigInteger resultado) {
         this.next = null;
         this.prev = null;
         this.clave = clave;

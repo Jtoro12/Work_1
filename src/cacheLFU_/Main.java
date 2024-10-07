@@ -1,4 +1,7 @@
 package cacheLFU_;
+
+import java.math.BigInteger;
+
 /**
  * @author Javier Toro Toro
  * @author Sebastián Cádiz Quezada
@@ -6,11 +9,11 @@ package cacheLFU_;
  **/
 public class Main {
     public static void main(String[] args) {
-        int cacheSize = 3;
+        int cacheSize = 100;
         CacheLFU lfu = new CacheLFU(cacheSize);
         FibonacciLFU fibronacciLFU = new FibonacciLFU();
-        int test = 45;
-        int resultado = (fibronacciLFU.fibonacciLFU(test, lfu));
+        int test = 47;
+        BigInteger resultado = (fibronacciLFU.fibonacci(test,lfu));
         System.out.println("Fibronacci[LFU] resultado de:" + test + "=" + resultado);
 
     }
