@@ -1,9 +1,13 @@
 package cacheLRU_;
-
+/**
+ * @author Javier Toro Toro
+ * @author Sebastián Cádiz Quezada
+ * @author Boris Arenas Bastías
+ **/
 public class FibonacciLRU {
-    
+
     public int fibonacciLRU(int n, LRUCache cache) {
-        
+
         if (n <= 1) {
             return n;
         }
@@ -12,8 +16,8 @@ public class FibonacciLRU {
         }
         int result = fibonacciLRU(n - 1, cache) + fibonacciLRU(n - 2, cache);// caso geenran retorna el valor
         cache.put(n, result);
-        
-        
+
+
         return result;
     }
 

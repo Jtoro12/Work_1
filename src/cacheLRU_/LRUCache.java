@@ -1,5 +1,9 @@
 package cacheLRU_;
-
+/**
+ * @author Javier Toro Toro
+ * @author Sebastián Cádiz Quezada
+ * @author Boris Arenas Bastías
+ **/
 public class LRUCache {
     int capacidad;
     HashingLRU cache;
@@ -13,6 +17,7 @@ public class LRUCache {
         this.size = 0;
     }
 
+    //Devuelve el resultado del nodo, ademas si la clave esta presente, en la lista enlazada mueve el nodo al inicio
     public int get(int key) {
         if (!cache.containsKey(key)) {
             return -1;
@@ -24,6 +29,7 @@ public class LRUCache {
         return nodoLista.resultado;
     }
 
+    //Inserta el nodo, si la cache ya esta llena, elimina el ultimo nodo de la lista para poder agregar le nuevo nodo
     public void put(int key, int data) {
         if (cache.containsKey(key)) {
             NodoLista node = cache.buscarNodo(key);

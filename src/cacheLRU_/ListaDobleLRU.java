@@ -1,5 +1,9 @@
 package cacheLRU_;
-
+/**
+ * @author Javier Toro Toro
+ * @author Sebastián Cádiz Quezada
+ * @author Boris Arenas Bastías
+ **/
 public class ListaDobleLRU {
     public NodoLista Cabeza;
     public NodoLista Cola;
@@ -11,6 +15,7 @@ public class ListaDobleLRU {
         this.size = 0;
     }
 
+    //Inserta el nodo al inicio de la lista
     public void addNode(NodoLista node) {
         if (Cabeza == null) {
             Cabeza = node;
@@ -20,8 +25,10 @@ public class ListaDobleLRU {
             Cabeza.prev = node;
             Cabeza = node;
         }
+        size++;
     }
 
+    //Elimina un nodo de la lista
     public void removeNode(NodoLista nodo) {
         if (nodo == Cabeza && nodo == Cola) {
             Cabeza = null;
@@ -39,26 +46,13 @@ public class ListaDobleLRU {
         size--;
     }
 
+    //Devuelve el ultimo nodo de la lista(Cola)
     public NodoLista getLast() {
-        NodoLista current = this.Cabeza;
-        if (Cabeza == null && Cola == null) {
-            return null;
-        }
-        while (current.next != null) {
-            current = current.next;
-        }
-        return current;
+        return Cola;
     }
 
     public int size() {
-        int cont = 0;
-        NodoLista current = this.Cabeza;
-        while (current != null) {
-            cont++;
-            current = current.next;
-
-        }
-        return cont;
+        return this.size;
     }
 
     public void print() {

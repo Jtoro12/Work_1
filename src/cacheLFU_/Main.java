@@ -1,14 +1,18 @@
 package cacheLFU_;
-
+/**
+ * @author Javier Toro Toro
+ * @author Sebastián Cádiz Quezada
+ * @author Boris Arenas Bastías
+ **/
 public class Main {
     public static void main(String[] args) {
-        int cacheSize=35;
-        CacheLFU lfu=new CacheLFU(cacheSize);
-        FibronacciLFU fibronacciLFU=new FibronacciLFU();
-        int test=46;
-        int resultado=(fibronacciLFU.fibonacciLRU(test, lfu));
-        System.out.println("Fibronacci[LFU] resultado de:"+test+"="+resultado);
-       
+        int cacheSize = 3;
+        CacheLFU lfu = new CacheLFU(cacheSize);
+        FibonacciLFU fibronacciLFU = new FibonacciLFU();
+        int test = 45;
+        int resultado = (fibronacciLFU.fibonacciLFU(test, lfu));
+        System.out.println("Fibronacci[LFU] resultado de:" + test + "=" + resultado);
+
     }
-    
+
 }

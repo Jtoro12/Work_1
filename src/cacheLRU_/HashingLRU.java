@@ -1,5 +1,9 @@
 package cacheLRU_;
-
+/**
+ * @author Javier Toro Toro
+ * @author Sebastián Cádiz Quezada
+ * @author Boris Arenas Bastías
+ **/
 public class HashingLRU {
     private NodoHashing[] T;
     private int size;
@@ -17,6 +21,7 @@ public class HashingLRU {
         return (hash + i) % T.length;
     }
 
+    //Inserta el nodo en la tabla hash
     public void insertar(NodoHashing node) {
         if (size >= T.length) {
             return; // tabla llena
@@ -36,6 +41,8 @@ public class HashingLRU {
         }
     }
 
+
+    //Verifica si la clave se encuentra en la tabla hash
     public boolean containsKey(int clave) {
         int index = h(clave);
         if (T[index] != null) {
@@ -48,6 +55,7 @@ public class HashingLRU {
         return false;
     }
 
+    //Busca el nodo utilizando la clave y retorna el nodo al que tiene el puntero en la lista enlazada
     public NodoLista buscarNodo(int clave) {
         int h = h(clave);
         int i = 0;
@@ -64,6 +72,7 @@ public class HashingLRU {
         return null;
     }
 
+    //Elimina el nodo de la tabla hash utilizando la clave
     public boolean eliminar(int clave) {
         int h = h(clave);
         int i = 0;
@@ -110,6 +119,4 @@ public class HashingLRU {
             }
         }
     }
-
-
 }

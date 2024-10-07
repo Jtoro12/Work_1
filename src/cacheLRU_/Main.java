@@ -1,5 +1,9 @@
 package cacheLRU_;
-
+/**
+ * @author Javier Toro Toro
+ * @author Sebastián Cádiz Quezada
+ * @author Boris Arenas Bastías
+ **/
 public class Main {
     public static void main(String[] args) {
         int cacheSize = 35;
