@@ -13,7 +13,7 @@ public class LRUCache {
         this.size = 0;
     }
 
-    public int get(int key) {
+    public int get(int key) {//metodo similar a buscar
         if (!cache.containsKey(key)) {
             return -1;
         }
@@ -24,13 +24,13 @@ public class LRUCache {
         return nodoLista.resultado;
     }
 
-    public void put(int key, int data) {
+    public void put(int key, int data) {//metodo insertar
         if (cache.containsKey(key)) {
             NodoLista node = cache.buscarNodo(key);
             lista.removeNode(node);
         }
 
-        if (lista.size() >= capacidad) {
+        if (lista.size() >= capacidad) {//remover el nodo menos usado 
             NodoLista lastNode = lista.getLast();
             lista.removeNode(lastNode);
             cache.eliminar(lastNode.clave);
