@@ -1,4 +1,8 @@
 package cacheLRU_;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 /**
  * @author Javier Toro Toro
  * @author Sebastián Cádiz Quezada
@@ -18,9 +22,9 @@ public class LRUCache {
     }
 
     //Devuelve el resultado del nodo, ademas si la clave esta presente, en la lista enlazada mueve el nodo al inicio
-    public int get(int key) {
+    public BigInteger get(int key) {
         if (!cache.containsKey(key)) {
-            return -1;
+            return BigInteger.valueOf(-1);
         }
         NodoLista nodoLista = cache.buscarNodo(key);
         lista.removeNode(nodoLista);// mover el nodo al principio
@@ -30,7 +34,7 @@ public class LRUCache {
     }
 
     //Inserta el nodo, si la cache ya esta llena, elimina el ultimo nodo de la lista para poder agregar le nuevo nodo
-    public void put(int key, int data) {
+    public void put(int key, BigInteger data) {
         if (cache.containsKey(key)) {
             NodoLista node = cache.buscarNodo(key);
             lista.removeNode(node);
