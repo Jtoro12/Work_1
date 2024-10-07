@@ -81,5 +81,4 @@ public class CacheLFU {
         if (menor.lista.size == 0)
             menor.eliminarFrecuencia();
     }
-
 }
