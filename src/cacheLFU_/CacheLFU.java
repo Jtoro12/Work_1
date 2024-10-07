@@ -59,8 +59,6 @@ public class CacheLFU {
 
     //Aumenta la frecuencia del nodo del resultado de fibonacci
     private void aumentarFrec(NodoLista nodo) {
-        /*System.out.println("Frecuencia inicio "+nodo.frecPadre.frecuencia);
-        System.out.println("Valor nodo "+nodo.clave);*/
         if (nodo == null || nodo.frecPadre == null) return;
         NodoFrecuencia current = nodo.frecPadre;
         NodoFrecuencia siguiente = current.next;
@@ -74,9 +72,6 @@ public class CacheLFU {
 
         siguiente.lista.insertar(nodo);
         nodo.frecPadre = siguiente;
-        /*System.out.println("Frecuencia final "+nodo.frecPadre.frecuencia);
-        System.out.println("Valor nodo "+nodo.clave);
-        System.out.println();*/
     }
 
     //Elimina el ultimo nodo de la primera frecuencia

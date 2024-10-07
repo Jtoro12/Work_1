@@ -9,19 +9,30 @@ import java.math.BigInteger;
  **/
 public class Main {
     public static void main(String[] args) {
-        int cacheSize = 8;
-        int fibonaci = 60;
+        int cacheSize = 35;
+        int fibonaci = 47;
         CacheLFU lfu = new CacheLFU(cacheSize);
-        FibonacciLFU fibronacciLFU = new FibonacciLFU();
 
-        long start = System.nanoTime();
+        long start = System.currentTimeMillis();
         for (int i = 0; i <= fibonaci; i++) {
-            BigInteger resultado = (fibronacciLFU.fibonacci(i,lfu));
+            BigInteger resultado = (fibonacciLFU(i,lfu));
             System.out.println("Fibronacci[LFU] resultado de:" + i + "=" + resultado);
         }
-        long end = System.nanoTime();
-        System.out.println("Tiempo "+ (end-start)/1_000_000);
+        long end = System.currentTimeMillis();
+        System.out.println("Tiempo "+ (end-start)+" ms");
 
+    }
+
+    public static BigInteger fibonacciLFU(int n, CacheLFU cache) {
+        if (n <= 1) {
+            return BigInteger.valueOf(n);
+        }
+        if (!cache.get(n).equals(BigInteger.valueOf(-1))) {// si ya esta en el cache el valor
+            return cache.get(n);
+        }
+        BigInteger result = fibonacciLFU(n - 1, cache).add(fibonacciLFU(n - 2, cache));// caso general retorna el valor
+        cache.put(n, result);
+        return result;
     }
 
 }
