@@ -9,8 +9,8 @@ import java.math.BigInteger;
  **/
 public class Main {
     public static void main(String[] args) {
-        int cacheSize = 35;
-        int fibonaci = 47;
+        int cacheSize = 34;
+        int fibonaci = 75;
         CacheLFU lfu = new CacheLFU(cacheSize);
 
         long start = System.currentTimeMillis();
@@ -30,7 +30,8 @@ public class Main {
         if (!cache.get(n).equals(BigInteger.valueOf(-1))) {// si ya esta en el cache el valor
             return cache.get(n);
         }
-        BigInteger result = fibonacciLFU(n - 1, cache).add(fibonacciLFU(n - 2, cache));// caso general retorna el valor
+        BigInteger result = fibonacciLFU(n - 1, cache).add(fibonacciLFU(n - 2, cache));// caso
+        //general retorna el valor
         cache.put(n, result);
         return result;
     }

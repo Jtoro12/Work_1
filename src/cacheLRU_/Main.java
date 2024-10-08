@@ -9,7 +9,7 @@ import java.math.BigInteger;
  **/
 public class Main {
     public static void main(String[] args) {
-        int cacheSize = 3;
+        int cacheSize = 34;
         int fibonacci = 100;
         LRUCache lruCache = new LRUCache(cacheSize);
 
